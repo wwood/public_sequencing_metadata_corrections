@@ -1,0 +1,55 @@
+[
+    {
+        "bioproject": "PRJEB6942",
+        "reference": {
+            "doi": "10.1111/1462-2920.13839"
+        },
+        "_comment1": "As well as being +12 instead of -12 for the latitude, the decimal coordinates also appear to be incorrect, so taking the value reported in 10.1111/1462-2920.13839",
+        "corrections": [
+            {
+                "table": "sra",
+                "field": "center_name",
+                "old_value": "OMMONWEALTH SCIENCE AND INDUSTRIAL RESEARCH ORGANI",
+                "corrected_value": "COMMONWEALTH SCIENCE AND INDUSTRIAL RESEARCH ORGANISATION"
+            },
+            {
+                "table": "biosample",
+                "field": "insdc_center_alias_sam",
+                "old_value": "Commonwealth Science and Industrial Research Organisation - Australia",
+                "corrected_value": "Commonwealth Science and Industrial Research Organisation - Australia"
+            },
+            {
+                "table": "biosample",
+                "field": "insdc_center_name_sam",
+                "old_value": "Commonwealth Science and Industrial Research Organisation - Australia",
+                "corrected_value": "Commonwealth Science and Industrial Research Organisation - Australia"
+            },
+            {
+                "table": "biosample",
+                "field": "geographic_location__latitude__sam",
+                "old_value": "12.61667",
+                "corrected_value": "S 12°37.707′"
+            },
+            {
+                "table": "biosample",
+                "field": "geographic_location__longitude__sam",
+                "old_value": "132.883333",
+                "corrected_value": "E 132°53.091′"
+            }
+        ]
+    },
+    {
+        "bioproject": "PRJEB20308",
+        "reference": {
+            "pubmed": 29669589
+        },
+        "corrections": [
+            {
+                "table": "biosample",
+                "field": "organism",
+                "old_value": "bacterium",
+                "corrected_value": "canine metagenome"
+            }
+        ]
+    }
+]
