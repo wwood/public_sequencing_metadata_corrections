@@ -15,13 +15,13 @@
             {
                 "table": "biosample",
                 "field": "insdc_center_alias_sam",
-                "old_value": "Commonwealth Science and Industrial Research Organisation - Australia",
+                "old_value": "ommonwealth Science and Industrial Research Organisation - Australia",
                 "corrected_value": "Commonwealth Science and Industrial Research Organisation - Australia"
             },
             {
                 "table": "biosample",
                 "field": "insdc_center_name_sam",
-                "old_value": "Commonwealth Science and Industrial Research Organisation - Australia",
+                "old_value": "ommonwealth Science and Industrial Research Organisation - Australia",
                 "corrected_value": "Commonwealth Science and Industrial Research Organisation - Australia"
             },
             {
