@@ -43,11 +43,12 @@
         "reference": {
             "pubmed": 29669589
         },
+        "_comment1": "Some are marked bacterium, some gut metagenome. Technically gut metagenome is correct, but setting to canine for consistency.",
         "corrections": [
             {
                 "table": "biosample",
                 "field": "organism",
-                "old_value": "bacterium",
+                "old_value": ["bacterium","gut metagenome"],
                 "corrected_value": "canine metagenome"
             }
         ]
@@ -66,5 +67,16 @@
                 "corrected_value": "bioreactor metagenome"
             }
         ]
-    }
+    },
+    {
+        "run": "ERR2193791",
+        "corrections": [
+            {
+                "table": "biosample",
+                "field": "geographic_location__latitude__sam",
+                "old_value": "22.99716N,",
+                "corrected_value": "22.99716N"
+            }
+        ]
+    }	 
 ]
