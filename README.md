@@ -24,7 +24,7 @@ EXPORT DATA
     format='JSON') AS
 SELECT
   acc,
-  jattr
+  attributes
 FROM
   `nih-sra-datastore.sra.metadata`
 WHERE
