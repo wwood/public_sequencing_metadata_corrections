@@ -40,6 +40,9 @@ This generated a single file which was downloaded to our local machine, in the `
 gsutil -m cp -r gs://my-bucket-name/sra_metadata_test/*.json .
 ```
 
+At this point, the files can be deleted from the bucket (e.g. from
+https://console.cloud.google.com/storage), to avoid incurring storage costs.
+
 Then setting up the parsing script's conda environment:
 ```sh
 mamba env create -n public_sequencing_metadata_corrections -f env.yml
@@ -48,5 +51,16 @@ conda activate public_sequencing_metadata_corrections
 
 and running the script:
 ```sh
-bin/parse_biosample_extras.py --json-input example_data/000000000000.json
+bin/parse_biosample_extras.py --json-input example_data/000000000000.json > example_data/000000000000.parsed.tsv
 ```
+
+This outputs a TSV file with corrected metadata. Extra biosample metadata
+columns can be output - see the help message of the script for more details.
+
+For instance these fields are parsed into standardised form:
+```sh
+bin/parse_biosample_extras.py --json-input example_data/000000000000.json --extra-sample-keys collection_date_sam depth_sam temperature_sam
+```
+
+Note that the corrections to these data are not currently applied, the parsing
+and corrections are separate (at the moment - integration coming).

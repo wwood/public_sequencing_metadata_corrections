@@ -15,10 +15,12 @@ sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)),'..')] + sy
 ACTUALLY_MISSING = set([s.lower() for s in [
     'missing','not applicable','NA','Missing','Not collected','not provided','Missing: Not provided','', 'uncalculated','not applicable','no applicable','unspecified','restricted access']])
 
+
 def validate_lat_lon(lat, lon):
     if lat >= -90 and lat <= 90 and lon >= -180 and lon <= 180:
         return True
     return False
+
 
 def parse_json_to_lat_lon_dict(j):
     lat_long_dict = {}
@@ -42,8 +44,9 @@ def parse_json_to_lat_lon_dict(j):
 
     return lat_long_dict
 
+
 def parse_lat_lon_sam(lat_lon_sam):
-    lat_lon_regex = re.compile('^([0-9.-]+) {0,1}([NSns]),{0,1} {0,1}([0-9.-]+) ([EWew])$')
+    lat_lon_regex = re.compile(r'^([0-9.-]+) {0,1}([NSns]),{0,1} {0,1}([0-9.-]+) ([EWew])$')
     matches = lat_lon_regex.match(lat_lon_sam)
     if matches is None:
         logging.warning("Unexpected lat_lon_sam value: %s" % lat_lon_sam)
@@ -67,26 +70,28 @@ def parse_lat_lon_sam(lat_lon_sam):
     else:
         logging.warning("Unvalidated lat_lon_sam value: %s" % lat_lon_sam)
 
+
 def degrees_minutes_to_decimal(degrees, minutes, seconds=0):
     if seconds == '':
         seconds = 0
     return float(degrees) + float(minutes) / 60.0 + float(seconds) / 3600.0
 
+
 def parse_two_part_lat_lon(sample_name, lat_input, lon_input):
-    geoloc_lat_regex = re.compile('^([0-9.-]+)[°\?]{0,1} {0,1}([NSns])$')
-    geoloc_lon_regex = re.compile('^([0-9.-]+)[°\?]{0,1} {0,1}([EWew])$')
+    geoloc_lat_regex = re.compile(r'^([0-9.-]+)[°\?]{0,1} {0,1}([NSns])$')
+    geoloc_lon_regex = re.compile(r'^([0-9.-]+)[°\?]{0,1} {0,1}([EWew])$')
     # e.g. S 12°37.707′
-    sexigesimal_regex_lat1 = re.compile('^([NSns]) ([0-9]+)[°\?]([0-9.]+)[\'′]$')
-    sexigesimal_regex_lon1 = re.compile('^([EWew]) ([0-9]+)[°\?]([0-9.]+)[\'′]$')
+    sexigesimal_regex_lat1 = re.compile(r'^([NSns]) ([0-9]+)[°\?]([0-9.]+)[\'′]$')
+    sexigesimal_regex_lon1 = re.compile(r'^([EWew]) ([0-9]+)[°\?]([0-9.]+)[\'′]$')
     # e.g. 52?09'50.8N
-    sexigesimal_regex_lat2 = re.compile('^([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)([NSns])$')
-    sexigesimal_regex_lon2 = re.compile('^([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)([EWew])$')
+    sexigesimal_regex_lat2 = re.compile(r'^([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)([NSns])$')
+    sexigesimal_regex_lon2 = re.compile(r'^([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)([EWew])$')
     # e.g.  ERR2824916: ["S33°28'21.68", "O70°38'50.06"] -> Actually that one is fail
-    sexigesimal_regex_lat3 = re.compile('^([NSns])([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)$')
-    sexigesimal_regex_lon3 = re.compile('^([EWew])([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)$')
+    sexigesimal_regex_lat3 = re.compile(r'^([NSns])([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)$')
+    sexigesimal_regex_lon3 = re.compile(r'^([EWew])([0-9]+)[°\?]([0-9.]+)[\'′]([0-9.]*)$')
     # e.g. ERR5173566: ['N 43.8047886', 'E 15.9637432']
-    geoloc_lat_regex2 = re.compile('^([NSns]) {0,1}([0-9.-]+)[°\?]{0,1}$')
-    geoloc_lon_regex2 = re.compile('^([EWew]) {0,1}([0-9.-]+)[°\?]{0,1}$')
+    geoloc_lat_regex2 = re.compile(r'^([NSns]) {0,1}([0-9.-]+)[°\?]{0,1}$')
+    geoloc_lon_regex2 = re.compile(r'^([EWew]) {0,1}([0-9.-]+)[°\?]{0,1}$')
 
     try:
         lat = float(lat_input)
@@ -174,6 +179,7 @@ def parse_two_part_lat_lon(sample_name, lat_input, lon_input):
         logging.warning("Unvalidated 2-part value: %s / %s" % (lat_input, lon_input))
         return False, False
 
+
 def parse_temp(acc, temp):
     if temp.lower() in ACTUALLY_MISSING:
         return ''
@@ -196,6 +202,7 @@ def parse_temp(acc, temp):
         except ValueError:
             logging.warning("Unexpected temperature value for %s: %s from %s" % (acc, temp2, temp))
             return ''
+
 
 def parse_depth(acc, depth):
     if depth.lower() in ACTUALLY_MISSING:
@@ -224,6 +231,7 @@ def parse_depth(acc, depth):
     except ValueError:
         logging.warning("Unexpected depth value for %s: %s from %s" % (acc, depth2, depth))
         return ''
+
 
 def parse_date(acc, date):
     if date.lower() in ACTUALLY_MISSING:
@@ -261,6 +269,7 @@ def parse_date(acc, date):
     
     # logging.warning("Unexpected date value for %s: %s" % (acc, date))
     # return ['']*2
+
 
 def parse_lat_lons(acc, lat_long_dict):
     single_part_keys = [
@@ -306,6 +315,7 @@ def parse_lat_lons(acc, lat_long_dict):
 
     return to_return
 
+
 # Special parsing methods
 parsing_hash = {
     'depth_sam': parse_depth,
@@ -314,8 +324,9 @@ parsing_hash = {
 }
 # For when the number of fields returned by parsing != 1
 non_standard_output_field_names_hash = {
-    'collection_date_sam': ['collection_year','collection_month'],
+    'collection_date_sam': ['collection_year', 'collection_month'],
 }
+
 
 def parse_attribute_fields(j, extra_sample_keys):
     result_hash = {}
@@ -348,6 +359,7 @@ def parse_extra_sample_attributes(j, extra_sample_keys):
                 to_return.append('')
 
     return to_return
+
 
 if __name__ == '__main__':
     parent_parser = argparse.ArgumentParser(add_help=False)
