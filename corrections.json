@@ -8,31 +8,31 @@
         "corrections": [
             {
                 "table": "sra",
-                "field": "center_name",
-                "old_value": "OMMONWEALTH SCIENCE AND INDUSTRIAL RESEARCH ORGANI",
+                "field": "submitter",
+                "old_value": "ommonwealth Science and Industrial Research Organisation - Australia, , European Nucleotide Archive",
                 "corrected_value": "COMMONWEALTH SCIENCE AND INDUSTRIAL RESEARCH ORGANISATION"
             },
             {
                 "table": "biosample",
-                "field": "insdc_center_alias_sam",
+                "field": "INSDC center name",
                 "old_value": "ommonwealth Science and Industrial Research Organisation - Australia",
                 "corrected_value": "Commonwealth Science and Industrial Research Organisation - Australia"
             },
             {
                 "table": "biosample",
-                "field": "insdc_center_name_sam",
+                "field": "organisation",
                 "old_value": "ommonwealth Science and Industrial Research Organisation - Australia",
                 "corrected_value": "Commonwealth Science and Industrial Research Organisation - Australia"
             },
             {
                 "table": "biosample",
-                "field": "geographic_location__latitude__sam",
+                "field": "geographic location (latitude)",
                 "old_value": "12.61667",
                 "corrected_value": "S 12°37.707′"
             },
             {
                 "table": "biosample",
-                "field": "geographic_location__longitude__sam",
+                "field": "geographic location (longitude)",
                 "old_value": "132.883333",
                 "corrected_value": "E 132°53.091′"
             }
@@ -47,7 +47,7 @@
         "corrections": [
             {
                 "table": "biosample",
-                "field": "organism",
+                "field": "taxon_name",
                 "old_value": ["bacterium","gut metagenome"],
                 "corrected_value": "canine metagenome"
             }
@@ -73,7 +73,7 @@
         "corrections": [
             {
                 "table": "biosample",
-                "field": "geographic_location__latitude__sam",
+                "field": "geographic location (latitude)",
                 "old_value": "22.99716N,",
                 "corrected_value": "22.99716N"
             }
